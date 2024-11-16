@@ -1,0 +1,7 @@
+database:
+  path: 'path/to/excel'  # xlsx, xls...
+  sheet_name: 'sheet1'
+
+templates:
+  references:
+    about_study: 'path/to/word_template'  # docx
