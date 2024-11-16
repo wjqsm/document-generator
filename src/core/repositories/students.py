@@ -19,6 +19,14 @@ class StudentsRepository:
         for index, row in self._df.iterrows():
             yield row[self._identifications_fields].tolist(), index
 
+    def get_context(self, indexes: list[int], used_vars: set[str]) -> dict[str, str]:
+        df = self._df.loc[indexes]
+        context = {}
+        for key, value in df.items():
+            if key in used_vars:
+                context[key] = value
+        return context
+
     def find_by_substring(self, substring: str) -> Generator[tuple[list, int], None, None]:
         substring = substring.lower()
         mask = self._df[self._identifications_fields].apply(
